@@ -1,0 +1,135 @@
+
+<!DOCTYPE html PUBLIC>
+<html>
+  <head>
+  <style type = "text/css">
+
+      
+      }
+	  #chat{
+	  font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	  font-size: 125%;
+	  border:2px solid #5C8533;
+	  position: absolute;
+	  text-align:center;
+	  top:450px; 
+	  left:1025px;
+	  width:200px;
+	  height:50px;}
+	  #tutor{
+	  font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	  font-size: 125%;
+	  border:2px solid #5C8533
+;
+	  position: absolute;
+	  text-align:center;
+	  top: 550px;
+	  left:1025px;
+	  width:200px;
+	  height:25px;}
+	  #forums{
+	  font-size: 200%;
+	  font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	  border: 2px solid #5C8533;
+	  position: absolute;
+	  text-align:center;
+	  top: 100px;
+	  left: 75px;
+	  width:800px;
+	  height:500px;
+	  }
+	  #messagesDiv{font:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	  font-size:70%;
+	  }
+	  
+	  
+	  
+      </style>
+	  
+	   <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://cdn.firebase.com/js/client/2.0.2/firebase.js"></script>
+
+    <!-- Firechat -->
+    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firechat/2.0.1/firechat.min.css" />
+    <script src="https://cdn.firebase.com/libs/firechat/2.0.1/firechat.min.js"></script>
+
+    <!-- Custom CSS -->
+    <style>
+      #firechat-wrapper {
+		position: relative;
+        height: 500px;
+        max-width: 325px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        margin: 48px auto;
+        text-align: center;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        -webkit-box-shadow: 0 5px 25px #666;
+        -moz-box-shadow: 0 5px 25px #666;
+        box-shadow: 0 5px 25px #666;e
+		top:0%;
+		left:430px;
+		
+      }
+    </style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/resources/tutorial/css/example.css">
+		
+	  <meta charset="utf-8" />
+
+   
+    <title>studymode</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </head>
+  
+  <body> 
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">	<img  height="35"  src="https://mail.google.com/mail/u/0/?ui=2&ik=c06a9ae8de&view=fimg&th=14b6707403209a13&attid=0.1&disp=inline&realattid=f_i5vtedgh0&safe=1&attbid=ANGjdJ_DKk-ivMJ7NUhvhsWzZDnk8aXdHwgTer22pxt22pQk8Jk7HcfFxnODYHzImuL5xwn0CbzbYy6b-NJLNAWVIgw7VdgxEm7AoqSBSwC-3PoMNK6JXaiUpHIxVUQ&ats=1423362706308&rm=14b6707403209a13&zw&sz=w2124-h1012" />
+</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="index.html">Home</a></li>
+        <li><a href="page2.html">Discussion Threads</a></li>
+        <li><a href="page3.html">Hangouts</a></li>
+        <li><a href="page4.html">Tutor Threads</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+  
+	<div id="forums" style = "overflow:scroll;">  Forums <script type="text/javascript" src="http://0ecoe6wyvu.embed.talkiforum.com/embed/1.js"></script><div style="font-size:80%; text-align:center;" id="0ecoe6wyvut4lk1prm0">get your own <a href="http://talkiforum.com?utm_source=install&utm_medium=link&utm_campaign=get_your_own">embeddable forum</a> with Talki</div></div>
+   
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <link rel='stylesheet' type='text/css' href='/resources/tutorial/css/example.css'>
+<div id="firechat-wrapper"></div>
+    <script type="text/javascript">
+      var chatRef = new Firebase("https://firechat-demo.firebaseio.com");
+      var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+      chatRef.onAuth(function(authData) {
+        if (authData) {
+          chat.setUser(authData.uid, "Anonymous" + authData.uid.substr(10, 8));
+        } else {
+          chatRef.authAnonymously(function(error, authData) {
+            if (error) {
+              console.log(error);
+            }
+          });
+        }
+      });
+    </script>
+</body>
+</html

@@ -1,0 +1,218 @@
+
+<!doctype html>
+<!-- See http://www.firepad.io/docs/ for detailed embedding docs. -->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<!-- Firebase -->
+		<script src="https://cdn.firebase.com/js/client/2.0.2/firebase.js"></script>
+		<!-- CodeMirror -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.5.0/codemirror.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/4.5.0/codemirror.css" />
+		<!-- Firepad -->
+		<link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.1.0/firepad.css" />
+		<script src="https://cdn.firebase.com/libs/firepad/1.1.0/firepad.min.js"></script>
+		<style>
+			html {
+				height: 100%;
+			}
+			body {
+				margin: 0;
+				height: 100%;
+				position: relative;
+			}
+			/* Height / width / positioning can be customized for your use case.
+			 For demo purposes, we make firepad fill the entire browser. */
+			#firepad-container {
+			border: 2px solid #5C8533;
+			position: absolute;
+				width: 52%;
+				height: 90%;
+				top: 100px;
+				left:100px;
+			}
+		</style>
+		 <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://cdn.firebase.com/js/client/2.0.2/firebase.js"></script>
+
+    <!-- Firechat -->
+    <link rel="stylesheet" href="https://cdn.firebase.com/libs/firechat/2.0.1/firechat.min.css" />
+    <script src="https://cdn.firebase.com/libs/firechat/2.0.1/firechat.min.js"></script>
+
+    <!-- Custom CSS -->
+    <style>
+      #firechat-wrapper {
+		position: relative;
+        height: 575px;
+        max-width: 325px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        margin: 50px auto;
+        text-align: center;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        -webkit-box-shadow: 0 5px 25px #666;
+        -moz-box-shadow: 0 5px 25px #666;
+        box-shadow: 0 5px 25px #666;e
+		top:10%;
+		left:400px;
+		
+      }
+	  
+	  
+    </style>
+	<style type = "text/css">
+	#fire{
+	position:absolute;
+	top:5%;
+	  left:400px;
+	  }
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/resources/tutorial/css/example.css">
+		
+		</style>
+	  <meta charset="utf-8" />
+
+   
+    <title>studymode</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </head>
+  
+ 
+  
+		
+	
+	
+	
+	<body>
+	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">	<img  height="35"  src="https://mail.google.com/mail/u/0/?ui=2&ik=c06a9ae8de&view=fimg&th=14b6707403209a13&attid=0.1&disp=inline&realattid=f_i5vtedgh0&safe=1&attbid=ANGjdJ_DKk-ivMJ7NUhvhsWzZDnk8aXdHwgTer22pxt22pQk8Jk7HcfFxnODYHzImuL5xwn0CbzbYy6b-NJLNAWVIgw7VdgxEm7AoqSBSwC-3PoMNK6JXaiUpHIxVUQ&ats=1423362706308&rm=14b6707403209a13&zw&sz=w2124-h1012" />
+</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="index.html">Home</a></li>
+        <li><a href="page2.html">Discussion Threads</a></li>
+        <li><a href="page3.html">Hangouts</a></li>
+        <li><a href="page4.html">Tutor Threads</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+	<h1 id="fire"> Hangouts </h1>
+	<div id="firechat-wrapper"></div>
+    <script type="text/javascript">
+      var chatRef = new Firebase("https://firechat-demo.firebaseio.com");
+      var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+      chatRef.onAuth(function(authData) {
+        if (authData) {
+          chat.setUser(authData.uid, "Anonymous" + authData.uid.substr(10, 8));
+        } else {
+          chatRef.authAnonymously(function(error, authData) {
+            if (error) {
+              console.log(error);
+            }
+          });
+        }
+      });
+    </script>
+		<div id="firepad-container"></div>
+		<div class="l-demo-container">
+			<canvas id="drawing-canvas" width="1000" height="1000"></canvas>
+		</div>
+		<div id="colorholder"></div>
+		<script>
+			function init() {
+				//// Initialize Firebase.
+				var firepadRef = getExampleRef();
+				// TODO: Replace above line with:
+				// var firepadRef = new Firebase('<YOUR FIREBASE URL>');
+				//// Create CodeMirror (with lineWrapping on).
+				var codeMirror = CodeMirror(document.getElementById('firepad-container'), {
+					lineWrapping : true
+				});
+				//// Create Firepad (with rich text toolbar and shortcuts enabled).
+				var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
+					richTextToolbar : true,
+					richTextShortcuts : true
+				});
+				//// Initialize contents.
+				firepad.on('ready', function() {
+					
+				});
+				
+				//begin Drawing
+				
+				
+				
+				// An example of a complex custom entity.
+				firepad.registerEntity('checkbox', {
+					render : function(info, entityHandler) {
+						var inputElement = document.createElement('input');
+						inputElement.setAttribute('type', 'checkbox');
+						if (info.checked) {
+							inputElement.checked = 'checked';
+						}
+						inputElement.addEventListener('click', function() {
+							entityHandler.replace({
+								checked : this.checked
+							});
+						});
+						return inputElement;
+					}.bind(this),
+					fromElement : function(element) {
+						var info = {};
+						if (element.hasAttribute('checked')) {
+							info.checked = true;
+						}
+						return info;
+					},
+					update : function(info, element) {
+						if (info.checked) {
+							element.checked = 'checked';
+						} else {
+							element.checked = null;
+						}
+					},
+					export : function(info) {
+						var inputElement = document.createElement('checkbox');
+						if (info.checked) {
+							inputElement.setAttribute('checked', true);
+						}
+						return inputElement;
+					}
+				});
+			}
+			// Helper to get hash from end of URL or generate a random one.
+			function getExampleRef() {
+				var ref = new Firebase('https://firepad.firebaseio-demo.com');
+				var hash = window.location.hash.replace(/#/g, '');
+				if (hash) {
+					ref = ref.child(hash);
+				} else {
+					ref = ref.push();
+					// generate unique location.
+					window.location = window.location + '#' + ref.key();
+					// add it as a hash to the URL.
+				}
+				if ( typeof console !== 'undefined')
+					console.log('Firebase data: ', ref.toString());
+				return ref;
+			}
+			init();
+		</script>
+		
+	</body>
+</html>
